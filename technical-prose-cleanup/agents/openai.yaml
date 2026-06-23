@@ -1,0 +1,4 @@
+interface:
+  display_name: "Technical Prose Cleanup"
+  short_description: "Clean technical prose paragraph by paragraph"
+  default_prompt: "Use $technical-prose-cleanup to clean up main.tex paragraph by paragraph without changing the math."

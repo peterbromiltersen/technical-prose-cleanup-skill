@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.technical-prose-cleanup-progress.json
+technical-prose-cleanup-notes.md
+*.techclean.tex
+*.techclean.md
+*.techclean.txt
+.DS_Store
