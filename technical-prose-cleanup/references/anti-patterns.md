@@ -79,8 +79,17 @@ Watch for abstractions doing actions they cannot do:
 - "the comparison prices the missing information";
 - "the argument remembers";
 - "the distinction asks."
+- "In the direction from safety to universal adequacy, the unified theorem gives Piccione--Rubinstein consistency."
 
 Repair by naming the actual relation: states, shows, entails, rules out, represents, records, assumes, requires, or motivates.
+
+Bad:
+
+> In the direction from safety to universal adequacy, the unified theorem gives Piccione--Rubinstein consistency.
+
+Better:
+
+> If a belief is safe in the coherence game, the unified theorem implies that it is Piccione--Rubinstein consistent.
 
 ## Vague Demonstratives
 
