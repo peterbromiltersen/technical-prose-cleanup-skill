@@ -1,6 +1,6 @@
 ---
 name: technical-prose-cleanup
-description: Apply a correctness-first sentence-by-sentence cleanup pass to technical prose, LaTeX manuscripts, Markdown drafts, or academic text. Use when the user asks to remove LLM writing patterns, apply the tech-writing skill across a document, de-slop technical prose, improve exposition without personal voice transfer, or audit prose for phrase, sentence, paragraph, citation, and math-language failures while preserving equations, labels, citations, theorem/proof structure, notation, and technical claims.
+description: Apply a correctness-first sentence-by-sentence cleanup pass to technical prose, LaTeX manuscripts, Markdown drafts, or academic text. Use when the user asks to remove LLM writing patterns, especially hidden denial-then-assertion frames, apply the tech-writing skill across a document, de-slop technical prose, improve exposition without personal voice transfer, or audit prose for phrase, sentence, paragraph, citation, and math-language failures while preserving equations, labels, citations, theorem/proof structure, notation, and technical claims.
 ---
 
 # Technical Prose Cleanup
@@ -38,7 +38,7 @@ Use `--start <unit-number>` when resuming.
    - for each sentence, identify its role in the paragraph;
    - audit nontrivial noun phrases, sentence grammar, pronouns, demonstratives, and relational words;
    - check mathematical type discipline;
-   - remove filler and formulaic LLM patterns;
+   - remove filler and formulaic LLM patterns, including denial-then-assertion pairs spread across adjacent sentences;
    - preserve citations, labels, notation, equations, theorem/proof blocks, and quoted text.
 6. Apply only local edits that improve technical clarity or remove visible anti-patterns. Do not impose a personal tone. Keep a sentence, including a metaphorical sentence, when it has a clear technical role and does not obscure the claim.
 7. Keep compact notes in `technical-prose-cleanup-notes.md`: current decisions, unresolved technical risks, and next continuation point.
@@ -54,7 +54,7 @@ python3 /path/to/skill/scripts/paragraph_units.py <source> --save-marker <next-u
 
 - Preserve formal content over style. Do not silently repair technical claims.
 - Treat theorem/proof/proposition/definition environments, displayed equations, quotations, bibliography commands, labels, and citations as protected unless the user asks for mathematical revision.
-- Prefer informative affirmatives to empty negations. Rewrite "not A, it is B" patterns as direct B claims unless the exclusion of A blocks a live misreading or states a formal exclusion.
+- Prefer informative affirmatives to empty negations. Rewrite "not A, it is B" patterns as direct B claims unless the exclusion of A blocks a live misreading or states a formal exclusion. Treat split forms as the same pattern: "We do not claim A. We claim B"; "The point is not A. The point is B"; "This is not about A. It is about B." When a limitation is necessary, state the affirmative claim first and then add the scoped limitation.
 - Remove empty standalone emphasis sentences such as "That matters." and "This is important." If the point is real, name the operative distinction or consequence.
 - Do not add drama, slogans, or pull-quote endings. Preserve good authorial metaphors when they sharpen the technical point; remove metaphors only when they replace the technical claim, overstate it, or read as generic filler.
 - Keep hedges when they mark real scope, source uncertainty, modeling limits, or theorem assumptions. Remove hedges that merely soften an already precise claim.

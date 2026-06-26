@@ -15,11 +15,16 @@ Repair by naming the actual consequence or distinction:
 
 > Skyrms's setup, by contrast, fixes a theorem-level protocol.
 
-## Rathering
+## Rathering and Denial-Then-Assertion Frames
 
-The pattern "not A, it is B" or "not A, but B" is often filler.
+The pattern "not A, it is B" or "not A, but B" is often filler. The same failure often appears in adjacent sentences:
 
-Prefer a direct B claim. Keep the negative side only when it:
+- "We do not claim that A. We claim that B."
+- "The point is not A. The point is B."
+- "This is not about A. It is about B."
+- "The issue is not A. The issue is B."
+
+Prefer a direct B claim. If the limitation matters, add it after the affirmative claim and make its scope precise. Keep the negative side only when it:
 
 - blocks a live misreading;
 - records a source's taxonomy;
@@ -33,6 +38,14 @@ Bad:
 Better:
 
 > This restricts what we claim about Dutch book arguments.
+
+Bad:
+
+> We do not claim that the theorem settles every Dutch book argument. We claim that it identifies the shared price-posting structure.
+
+Better:
+
+> The theorem identifies the shared price-posting structure of the three arguments. It does not settle the normative force of every Dutch book argument.
 
 ## Filler Labels
 

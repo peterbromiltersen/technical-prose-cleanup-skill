@@ -58,6 +58,14 @@ For each sentence, identify:
 
 Reject sentences where the nouns are right but the grammar assigns the wrong roles. The subject must be able to do what the verb says.
 
+Also scan sentence pairs for denial-then-assertion frames:
+
+- "We do not claim that A. We claim that B."
+- "The point is not A. The point is B."
+- "This is not about A. It is about B."
+
+These usually hide the paragraph's positive claim behind a rhetorical setup. Rewrite as a direct affirmative claim, then add a scoped limitation only if the negated alternative blocks a live misreading or states a formal exclusion.
+
 ## Math-Language Fit
 
 Natural-language mathematics must match object types.

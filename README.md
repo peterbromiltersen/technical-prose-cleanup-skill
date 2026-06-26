@@ -14,7 +14,7 @@ It guides the agent to work paragraph by paragraph, assign each sentence a role,
 
 ## Install
 
-From Codex, run the skill installer:
+From a terminal, run the skill installer:
 
 ```bash
 python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
@@ -25,6 +25,23 @@ python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/inst
 Then restart Codex so it discovers the new skill.
 
 Manual fallback: copy the `technical-prose-cleanup/` directory into `${CODEX_HOME:-$HOME/.codex}/skills/`, then restart Codex.
+
+## Maintenance
+
+The local source checkout for this skill is:
+
+```text
+/home/bromille/technical-prose-cleanup-skill
+```
+
+Edit the files under `technical-prose-cleanup/` in that checkout, then install or copy that directory into `${CODEX_HOME:-$HOME/.codex}/skills/technical-prose-cleanup`. Commit and push from the checkout:
+
+```bash
+git status -sb
+git add technical-prose-cleanup README.md
+git commit -m "Update technical prose cleanup guidance"
+git push
+```
 
 ## Use
 
