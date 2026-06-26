@@ -26,23 +26,6 @@ Then restart Codex so it discovers the new skill.
 
 Manual fallback: copy the `technical-prose-cleanup/` directory into `${CODEX_HOME:-$HOME/.codex}/skills/`, then restart Codex.
 
-## Maintenance
-
-The local source checkout for this skill is:
-
-```text
-/home/bromille/technical-prose-cleanup-skill
-```
-
-Edit the files under `technical-prose-cleanup/` in that checkout, then install or copy that directory into `${CODEX_HOME:-$HOME/.codex}/skills/technical-prose-cleanup`. Commit and push from the checkout:
-
-```bash
-git status -sb
-git add technical-prose-cleanup README.md
-git commit -m "Update technical prose cleanup guidance"
-git push
-```
-
 ## Use
 
 Ask Codex something like:
