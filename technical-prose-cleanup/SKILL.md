@@ -36,7 +36,7 @@ Use `--start <unit-number>` when resuming.
    - identify its job;
    - inventory every prose sentence in the paragraph;
    - for each sentence, identify its role in the paragraph;
-   - audit nontrivial noun phrases, sentence grammar, pronouns, demonstratives, and relational words;
+   - audit nontrivial noun phrases, sentence grammar, pronouns, demonstratives, definite descriptions, named labels, and relational words;
    - check mathematical type discipline;
    - remove filler and formulaic LLM patterns, including odd negative statements and denial-then-assertion pairs spread across adjacent sentences;
    - preserve citations, labels, notation, equations, theorem/proof blocks, and quoted text.
@@ -54,6 +54,7 @@ python3 /path/to/skill/scripts/paragraph_units.py <source> --save-marker <next-u
 
 - Preserve formal content over style. Do not silently repair technical claims.
 - Treat theorem/proof/proposition/definition environments, displayed equations, quotations, bibliography commands, labels, and citations as protected unless the user asks for mathematical revision.
+- Check reader-available reference. Do not let a sentence presuppose a theorem, construction, distinction, or label before the reader has encountered it. Replace first-use definites such as "the transfer theorem" with an indefinite introduction such as "a theorem proved below," or introduce the name before relying on "the".
 - Prefer simple positive statements to odd negations. Rewrite "not A, it is B" patterns as direct B claims unless the exclusion of A blocks a live misreading or states a formal exclusion, and apply the same test to less explicit negative formulations. Treat "We accept the distinction, but our use of it is not to confine the paper to theorem statements. The unified theorem supplies the common mathematical object, and the later sections ask what argument forms that object makes available" as the anti-pattern and "We accept the distinction, and we will be interested in theorems as well as arguments. The unified theorem supplies the common mathematical object, and the later sections ask what argument forms that object makes available" as the corresponding pattern. Treat split forms as the same pattern: "We do not claim A. We claim B"; "The point is not A. The point is B"; "This is not about A. It is about B." When a limitation is necessary, state the affirmative claim first and then add the scoped limitation.
 - Remove empty standalone emphasis sentences such as "That matters." and "This is important." If the point is real, name the operative distinction or consequence.
 - Do not add drama, slogans, or pull-quote endings. Preserve good authorial metaphors when they sharpen the technical point; remove metaphors only when they replace the technical claim, overstate it, or read as generic filler.

@@ -53,10 +53,15 @@ For each sentence, identify:
 2. the main verb;
 3. the object or complement;
 4. prepositions and other relational words;
-5. pronouns and demonstratives;
+5. pronouns, demonstratives, definite descriptions, and named labels;
 6. what the sentence literally says.
 
 Reject sentences where the nouns are right but the grammar assigns the wrong roles. The subject must be able to do what the verb says.
+
+Check reader-available reference. A definite description or named technical label presupposes that
+the reader has already encountered the object. Human readers process a paper in order. If a theorem,
+construction, distinction, or label is being introduced for the first time, use an indefinite
+description such as "a theorem proved below" or introduce the name before relying on "the".
 
 Also scan sentence pairs for denial-then-assertion frames:
 
