@@ -15,7 +15,7 @@ Repair by naming the actual consequence or distinction:
 
 > Skyrms's setup, by contrast, fixes a theorem-level protocol.
 
-## Rathering and Denial-Then-Assertion Frames
+## Odd Negations, Rathering, and Denial-Then-Assertion Frames
 
 The pattern "not A, it is B" or "not A, but B" is often filler. The same failure often appears in adjacent sentences:
 
@@ -24,7 +24,17 @@ The pattern "not A, it is B" or "not A, but B" is often filler. The same failure
 - "This is not about A. It is about B."
 - "The issue is not A. The issue is B."
 
-Prefer a direct B claim. If the limitation matters, add it after the affirmative claim and make its scope precise. Keep the negative side only when it:
+Prefer a direct B claim. Also scan for negative statements that do not have the exact "not A, but B" form. If a simple positive sentence says the same thing, use it.
+
+Anti-pattern:
+
+> We accept the distinction, but our use of it is not to confine the paper to theorem statements. The unified theorem supplies the common mathematical object, and the later sections ask what argument forms that object makes available.
+
+Pattern:
+
+> We accept the distinction, and we will be interested in theorems as well as arguments. The unified theorem supplies the common mathematical object, and the later sections ask what argument forms that object makes available.
+
+If the limitation matters, add it after the affirmative claim and make its scope precise. Keep the negative side only when it:
 
 - blocks a live misreading;
 - records a source's taxonomy;
