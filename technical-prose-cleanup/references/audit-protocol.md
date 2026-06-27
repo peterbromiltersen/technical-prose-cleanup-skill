@@ -1,6 +1,6 @@
 # Audit Protocol
 
-Use these checks paragraph by paragraph and sentence by sentence. They are diagnostics, not mechanical rewrite rules. A cleanup pass is complete only when every prose sentence in scope has been assigned a role and audited against the paragraph job.
+Use these checks sentence by sentence and phrase by phrase. They are diagnostics, not mechanical rewrite rules. A cleanup pass is complete only when every prose sentence in scope has a written ledger entry assigning it a role, auditing it against the paragraph job, and recording an action.
 
 ## Paragraph Job
 
@@ -20,7 +20,7 @@ If a true sentence pulls the reader away from that job, move it, shorten it, or 
 
 ## Sentence Inventory
 
-For each prose paragraph, list each sentence mentally or in notes before editing. For each sentence decide whether it:
+For each prose paragraph, list each sentence in the cleanup ledger before editing. For each sentence decide whether it:
 
 - defines an object;
 - prepares notation or a formula;
@@ -31,7 +31,7 @@ For each prose paragraph, list each sentence mentally or in notes before editing
 - gives an example;
 - connects the paragraph to the next step.
 
-If a sentence has no role, delete it. If it has a role but hides the role behind filler, rewrite it. Do not delete a good metaphor merely because it is metaphorical; delete it only when it replaces the technical claim, overstates the claim, or reads as generic flourish.
+If a sentence has no role, delete it. If it has a role but hides the role behind filler, rewrite it. If it is already good, mark it kept and state the reason. Do not delete a good metaphor merely because it is metaphorical; delete it only when it replaces the technical claim, overstates the claim, or reads as generic flourish.
 
 ## Phrase Audit
 

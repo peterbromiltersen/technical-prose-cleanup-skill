@@ -7,7 +7,9 @@ description: Apply a correctness-first sentence-by-sentence cleanup pass to tech
 
 ## Overview
 
-Use this skill for document-level technical prose cleanup. It applies the `tech-writing` audits paragraph by paragraph and sentence by sentence, but does not imitate a personal voice. A pattern scan is not enough: each prose sentence must be assigned a role, audited for phrase and grammar failures, and either kept, rewritten, moved, or deleted.
+Use this skill for document-level technical prose cleanup. It applies the `tech-writing` audits sentence by sentence and phrase by phrase, but does not imitate a personal voice. A pattern scan is not enough: each prose sentence must be assigned a role, audited for phrase and grammar failures, and either kept, rewritten, moved, or deleted.
+
+A cleanup pass is incomplete unless every prose sentence in the requested scope has its own audit record. Do not summarize a paragraph as checked, do not report that "the rest looks fine," and do not skip sentences because they contain no obvious anti-pattern. Triage scans for low-hanging fruit are allowed only when the user explicitly asks for triage rather than cleanup.
 
 Correctness dominates style. If a cleanup would change a theorem, proof dependency, definition, hypothesis, quantifier, citation claim, mathematical object type, or normative scope, keep the original wording or record the issue in notes.
 
@@ -15,44 +17,54 @@ Correctness dominates style. If a cleanup would change a theorem, proof dependen
 
 - Audit protocol: `references/audit-protocol.md`
 - Anti-patterns: `references/anti-patterns.md`
-- Paragraph extractor: `scripts/paragraph_units.py`
+- Sentence and paragraph extractor: `scripts/paragraph_units.py`
 
-Load the audit protocol and anti-patterns before editing. Use the paragraph extractor to avoid skipping paragraphs, headings, displayed equations, theorem-like blocks, and quoted material.
+Load the audit protocol and anti-patterns before editing. Use the extractor in sentence mode for cleanup work so that headings, displayed equations, theorem-like blocks, quoted material, and every prose sentence appear in the work queue. Use paragraph mode only for orientation, not as the main cleanup workflow.
 
 ## Default Workflow
 
 1. Identify the source manuscript. If unspecified, prefer `main.tex`, then the largest local `.tex`, `.md`, or `.txt` draft.
 2. Create or identify an output draft. By default, write a sibling file named `<stem>.techclean<suffix>`, such as `main.techclean.tex`. Do not overwrite the source unless explicitly asked.
-3. Check for `.technical-prose-cleanup-progress.json` next to the source and resume from the recorded paragraph unless the user asks to restart.
-4. Run:
+3. Check for `.technical-prose-cleanup-progress.json` next to the source and resume from the recorded sentence-level unit unless the user asks to restart.
+4. Initialize a ledger for any multi-paragraph cleanup pass:
 
 ```bash
-python3 /path/to/skill/scripts/paragraph_units.py <source> --count 40
+python3 /path/to/skill/scripts/paragraph_units.py <source> --granularity sentence --init-ledger technical-prose-cleanup-ledger.md
 ```
 
-Use `--start <unit-number>` when resuming.
+The ledger is a discipline device, not optional bookkeeping. Each sentence or protected unit must end with one action: kept, revised, deleted, moved, protected, or flagged.
 
-5. Work paragraph by paragraph. For each paragraph:
-   - identify its job;
-   - inventory every prose sentence in the paragraph;
-   - for each sentence, identify its role in the paragraph;
+5. Pull exactly the next sentence-level unit:
+
+```bash
+python3 /path/to/skill/scripts/paragraph_units.py <source> --granularity sentence --start <unit-number> --count 1
+```
+
+Use `--start <unit-number>` when resuming. Increase `--count` only for inspection; do not treat a multi-sentence batch as audited unless each item receives a separate ledger entry.
+
+6. For each sentence unit:
+   - identify the parent paragraph's job;
+   - identify the sentence's role in that paragraph;
    - audit nontrivial noun phrases, sentence grammar, pronouns, demonstratives, definite descriptions, named labels, and relational words;
    - check mathematical type discipline;
-   - remove filler and formulaic LLM patterns, including odd negative statements and denial-then-assertion pairs spread across adjacent sentences;
-   - preserve citations, labels, notation, equations, theorem/proof blocks, and quoted text.
-6. Apply only local edits that improve technical clarity or remove visible anti-patterns. Do not impose a personal tone. Keep a sentence, including a metaphorical sentence, when it has a clear technical role and does not obscure the claim.
-7. Keep compact notes in `technical-prose-cleanup-notes.md`: current decisions, unresolved technical risks, and next continuation point.
-8. Update progress when stopping:
+   - scan adjacent sentences when needed for denial-then-assertion frames, odd negations, metronomic rhythm, or hidden scope shifts;
+   - apply one action in the ledger: kept, revised, deleted, moved, or flagged;
+   - record replacement text when revised, or the concrete reason when kept or flagged.
+7. Mark headings, commands, displayed equations, theorem/proof blocks, quotations, bibliography commands, labels, and other protected units as protected in the ledger unless the user has explicitly asked to revise them.
+8. Apply only local edits that improve technical clarity or remove visible anti-patterns. Do not impose a personal tone. Keep a sentence, including a metaphorical sentence, when it has a clear technical role and does not obscure the claim.
+9. Keep compact notes in `technical-prose-cleanup-notes.md`: current decisions, unresolved technical risks, and next continuation point.
+10. Update progress when stopping:
 
 ```bash
-python3 /path/to/skill/scripts/paragraph_units.py <source> --save-marker <next-unit> --note "Completed through unit <n>."
+python3 /path/to/skill/scripts/paragraph_units.py <source> --granularity sentence --save-marker <next-unit> --note "Completed through sentence unit <n>."
 ```
 
-9. Run the natural validation. For LaTeX, prefer the project build command; otherwise run `pdflatex -interaction=nonstopmode -halt-on-error <draft>` and BibTeX/Biber if the manuscript uses a bibliography.
+11. Run the natural validation. For LaTeX, prefer the project build command; otherwise run `pdflatex -interaction=nonstopmode -halt-on-error <draft>` and BibTeX/Biber if the manuscript uses a bibliography.
 
 ## Editing Policy
 
 - Preserve formal content over style. Do not silently repair technical claims.
+- A sentence is not audited merely because the paragraph containing it was read. Give each sentence an explicit action in the ledger.
 - Treat theorem/proof/proposition/definition environments, displayed equations, quotations, bibliography commands, labels, and citations as protected unless the user asks for mathematical revision.
 - Check reader-available reference. Do not let a sentence presuppose a theorem, construction, distinction, or label before the reader has encountered it. Replace first-use definites such as "the transfer theorem" with an indefinite introduction such as "a theorem proved below," or introduce the name before relying on "the". When a sentence introduces a new technical term, make the naming act syntactically visible: identify the object already in view, then name it ("Such an addition is a \emph{first-inquiry decoration}: ..."). Do not start with the new term as grammatical subject unless the surrounding text has already prepared it; "A first-inquiry decoration supplies ..." can read as an assertion about an established kind rather than as a first introduction.
 - Use typographic emphasis sparingly to mark an important term at first introduction, but keep the definition local: it should tell the reader what object is being named and why it belongs in the paragraph, not pull the section away from its topic.
